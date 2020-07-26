@@ -857,13 +857,18 @@ error:
 }
 
 
-FirewallRules::FirewallRules()
+FirewallRules::FirewallRules():m_pListener(nullptr)
 {
 
 }
 
 FirewallRules::~FirewallRules()
 {
+}
+
+void FirewallRules::SetActionListener(IFirewallActionListener* listener)
+{
+    m_pListener = listener;
 }
 
 void FirewallRules::SetFireWallRules()
@@ -878,7 +883,7 @@ void FirewallRules::SetFireWallRules()
     QString strCmdOut = QString::fromLocal8Bit(cmd.readAllStandardOutput());
     qDebug() << "SetFireWallRules In: " << strCmdOut;
 
-
+    
     cmd.start(QString("netsh advfirewall firewall add rule name=\"%1\" dir=out program=\"%2\" action=allow")
         .arg("fwtest", "happycastpc.exe"));
     bRet = cmd.waitForStarted();
@@ -901,4 +906,52 @@ void FirewallRules::RemoveFireWallRules()
     QString strCmdOut = QString::fromLocal8Bit(cmd.readAllStandardOutput());
     qDebug() << "RemoveFireWallRules: " << strCmdOut;
 
+}
+
+static const char* SINGLE_PUBLIC_SESSION_NAME = "GTASinglePublic";
+static const char* PROCESS_OFFLINE_NAME = "GTAProcessOffline";
+
+void FirewallRules::StartSinglePublicSession()
+{
+    // in
+    QString inCmd = QString("netsh advfirewall firewall add rule name=\"%1\" protocol=UDP dir=in localport=6672 action=block").arg(SINGLE_PUBLIC_SESSION_NAME);
+    RunFirewallCmd(inCmd);
+    // out
+    QString outCmd = QString("netsh advfirewall firewall add rule name=\"%1\" protocol=UDP dir=out localport=6672 action=block").arg(SINGLE_PUBLIC_SESSION_NAME);
+    RunFirewallCmd(outCmd);
+}
+
+void FirewallRules::StopSinglePublicSession()
+{
+    QString cmd = QString("netsh advfirewall firewall delete rule name=\"%1\" ").arg(SINGLE_PUBLIC_SESSION_NAME);
+    RunFirewallCmd(cmd);
+}
+
+void FirewallRules::StartProcessOffline(QString& processName)
+{
+	QString outCmd = QString("netsh advfirewall firewall add rule name=\"%1\" dir=out program=\"%2\" action=block enable=yes").arg(PROCESS_OFFLINE_NAME, processName);
+	RunFirewallCmd(outCmd);
+}
+
+void FirewallRules::StopProcessOffine()
+{
+	QString cmd = QString("netsh advfirewall firewall delete rule name=\"%1\" ").arg(PROCESS_OFFLINE_NAME);
+	RunFirewallCmd(cmd);
+}
+
+bool FirewallRules::RunFirewallCmd(QString& strCmd)
+{
+    m_QProcess.start(strCmd);
+	bool bRet = m_QProcess.waitForStarted();
+	bRet = m_QProcess.waitForFinished();
+
+    QString strOut = QString::fromLocal8Bit(m_QProcess.readAllStandardOutput());
+
+    if (m_pListener)
+    {
+        m_pListener->OnActionDone(strOut);
+    }
+
+    qDebug() << "Run cmd: " << strCmd << " with output: " << strOut;
+    return bRet;
 }

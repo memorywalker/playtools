@@ -12,8 +12,9 @@ public:
 
 	void SendSnackCmd();
 	void SendArmorCmd();
-	void SendSoloCmd();
-	void SendDisconnectProcessCmd();
+	void SendDoomsDayIICmd();
+	void SendDoomsDayIIICmd();
+	void SendLuckyWheelCmd(int millisec);
 	void SendFingerPrintCmd();
 
 private:

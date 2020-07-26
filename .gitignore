@@ -30,3 +30,13 @@
 *.exe
 *.out
 *.app
+
+PlayTools/.qmake.stash
+PlayTools/.vs/
+PlayTools/PlayTools.sln
+PlayTools/PlayTools.vcxproj
+PlayTools/PlayTools.vcxproj.filters
+PlayTools/PlayTools.vcxproj.user
+PlayTools/debug/
+PlayTools/release/
+

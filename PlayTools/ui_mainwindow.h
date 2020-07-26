@@ -28,26 +28,40 @@ class Ui_MainWindow
 {
 public:
     QWidget *centralwidget;
-    QVBoxLayout *verticalLayout_2;
     QVBoxLayout *verticalLayout;
-    QHBoxLayout *horizontalLayout;
-    QPushButton *snackButton;
-    QLineEdit *snackLineEdit;
-    QHBoxLayout *horizontalLayout_3;
-    QPushButton *amorButton;
-    QLineEdit *snackLineEdit_3;
+    QVBoxLayout *rootlayout;
+    QHBoxLayout *toplayout;
+    QVBoxLayout *mainlayout;
     QHBoxLayout *horizontalLayout_2;
     QPushButton *soloButton;
-    QLineEdit *snackLineEdit_2;
+    QLineEdit *lineEditSolo;
     QHBoxLayout *horizontalLayout_4;
     QPushButton *disconnectProcessButton;
-    QLineEdit *snackLineEdit_4;
+    QLineEdit *lineEditDisconnectProcess;
     QHBoxLayout *horizontalLayout_5;
     QPushButton *fingerPrintButton;
-    QLineEdit *snackLineEdit_5;
+    QLineEdit *lineEditFingerPrint;
+    QHBoxLayout *horizontalLayout_6;
+    QPushButton *luckyWheelButton;
+    QLineEdit *lineEditLuckyWheel;
+    QLabel *labelLuckWheel;
+    QLineEdit *lineEditLuckyWheelInteval;
+    QHBoxLayout *horizontalLayout_8;
+    QPushButton *doomsDay2Button;
+    QLineEdit *lineEditDoomsDayII;
+    QHBoxLayout *horizontalLayout_7;
+    QPushButton *doomsDay3Button;
+    QLineEdit *lineEditDoomsDayIII;
+    QHBoxLayout *horizontalLayout;
+    QPushButton *snackButton;
+    QLineEdit *lineEditSnack;
+    QHBoxLayout *horizontalLayout_3;
+    QPushButton *amorButton;
+    QLineEdit *lineEditArmor;
     QSpacerItem *verticalSpacer;
     QLabel *labelPrompt;
     QLabel *labelInfo;
+    QHBoxLayout *bottomlayout;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -55,104 +69,61 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QString::fromUtf8("MainWindow"));
-        MainWindow->resize(282, 561);
+        MainWindow->resize(441, 666);
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
-        verticalLayout_2 = new QVBoxLayout(centralwidget);
-        verticalLayout_2->setObjectName(QString::fromUtf8("verticalLayout_2"));
-        verticalLayout_2->setContentsMargins(5, 5, 5, 0);
-        verticalLayout = new QVBoxLayout();
+        verticalLayout = new QVBoxLayout(centralwidget);
         verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
-        horizontalLayout = new QHBoxLayout();
-        horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
-        horizontalLayout->setSizeConstraint(QLayout::SetDefaultConstraint);
-        snackButton = new QPushButton(centralwidget);
-        snackButton->setObjectName(QString::fromUtf8("snackButton"));
-        QSizePolicy sizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
-        sizePolicy.setHorizontalStretch(0);
-        sizePolicy.setVerticalStretch(0);
-        sizePolicy.setHeightForWidth(snackButton->sizePolicy().hasHeightForWidth());
-        snackButton->setSizePolicy(sizePolicy);
-        QFont font;
-        font.setFamily(QString::fromUtf8("Arial"));
-        font.setPointSize(10);
-        font.setBold(true);
-        font.setWeight(75);
-        snackButton->setFont(font);
-        snackButton->setFocusPolicy(Qt::StrongFocus);
+        rootlayout = new QVBoxLayout();
+        rootlayout->setObjectName(QString::fromUtf8("rootlayout"));
+        toplayout = new QHBoxLayout();
+        toplayout->setObjectName(QString::fromUtf8("toplayout"));
 
-        horizontalLayout->addWidget(snackButton);
+        rootlayout->addLayout(toplayout);
 
-        snackLineEdit = new QLineEdit(centralwidget);
-        snackLineEdit->setObjectName(QString::fromUtf8("snackLineEdit"));
-        QSizePolicy sizePolicy1(QSizePolicy::Expanding, QSizePolicy::Preferred);
-        sizePolicy1.setHorizontalStretch(0);
-        sizePolicy1.setVerticalStretch(0);
-        sizePolicy1.setHeightForWidth(snackLineEdit->sizePolicy().hasHeightForWidth());
-        snackLineEdit->setSizePolicy(sizePolicy1);
-        QFont font1;
-        font1.setFamily(QString::fromUtf8("Arial"));
-        font1.setPointSize(11);
-        font1.setBold(true);
-        font1.setWeight(75);
-        snackLineEdit->setFont(font1);
-
-        horizontalLayout->addWidget(snackLineEdit);
-
-        horizontalLayout->setStretch(0, 1);
-        horizontalLayout->setStretch(1, 1);
-
-        verticalLayout->addLayout(horizontalLayout);
-
-        horizontalLayout_3 = new QHBoxLayout();
-        horizontalLayout_3->setObjectName(QString::fromUtf8("horizontalLayout_3"));
-        horizontalLayout_3->setSizeConstraint(QLayout::SetDefaultConstraint);
-        amorButton = new QPushButton(centralwidget);
-        amorButton->setObjectName(QString::fromUtf8("amorButton"));
-        sizePolicy.setHeightForWidth(amorButton->sizePolicy().hasHeightForWidth());
-        amorButton->setSizePolicy(sizePolicy);
-        amorButton->setFont(font);
-        amorButton->setFocusPolicy(Qt::StrongFocus);
-
-        horizontalLayout_3->addWidget(amorButton);
-
-        snackLineEdit_3 = new QLineEdit(centralwidget);
-        snackLineEdit_3->setObjectName(QString::fromUtf8("snackLineEdit_3"));
-        sizePolicy1.setHeightForWidth(snackLineEdit_3->sizePolicy().hasHeightForWidth());
-        snackLineEdit_3->setSizePolicy(sizePolicy1);
-        snackLineEdit_3->setFont(font1);
-
-        horizontalLayout_3->addWidget(snackLineEdit_3);
-
-        horizontalLayout_3->setStretch(0, 1);
-        horizontalLayout_3->setStretch(1, 1);
-
-        verticalLayout->addLayout(horizontalLayout_3);
-
+        mainlayout = new QVBoxLayout();
+        mainlayout->setObjectName(QString::fromUtf8("mainlayout"));
         horizontalLayout_2 = new QHBoxLayout();
         horizontalLayout_2->setObjectName(QString::fromUtf8("horizontalLayout_2"));
         horizontalLayout_2->setSizeConstraint(QLayout::SetFixedSize);
         soloButton = new QPushButton(centralwidget);
         soloButton->setObjectName(QString::fromUtf8("soloButton"));
+        QSizePolicy sizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
+        sizePolicy.setHorizontalStretch(0);
+        sizePolicy.setVerticalStretch(0);
         sizePolicy.setHeightForWidth(soloButton->sizePolicy().hasHeightForWidth());
         soloButton->setSizePolicy(sizePolicy);
+        QFont font;
+        font.setFamily(QString::fromUtf8("Arial"));
+        font.setPointSize(10);
+        font.setBold(true);
+        font.setWeight(75);
         soloButton->setFont(font);
         soloButton->setFocusPolicy(Qt::StrongFocus);
+        soloButton->setStyleSheet(QString::fromUtf8("background-color: rgb(23, 135, 6);"));
 
         horizontalLayout_2->addWidget(soloButton);
 
-        snackLineEdit_2 = new QLineEdit(centralwidget);
-        snackLineEdit_2->setObjectName(QString::fromUtf8("snackLineEdit_2"));
-        sizePolicy1.setHeightForWidth(snackLineEdit_2->sizePolicy().hasHeightForWidth());
-        snackLineEdit_2->setSizePolicy(sizePolicy1);
-        snackLineEdit_2->setFont(font1);
+        lineEditSolo = new QLineEdit(centralwidget);
+        lineEditSolo->setObjectName(QString::fromUtf8("lineEditSolo"));
+        QSizePolicy sizePolicy1(QSizePolicy::Expanding, QSizePolicy::Preferred);
+        sizePolicy1.setHorizontalStretch(0);
+        sizePolicy1.setVerticalStretch(0);
+        sizePolicy1.setHeightForWidth(lineEditSolo->sizePolicy().hasHeightForWidth());
+        lineEditSolo->setSizePolicy(sizePolicy1);
+        QFont font1;
+        font1.setFamily(QString::fromUtf8("Arial"));
+        font1.setPointSize(11);
+        font1.setBold(true);
+        font1.setWeight(75);
+        lineEditSolo->setFont(font1);
 
-        horizontalLayout_2->addWidget(snackLineEdit_2);
+        horizontalLayout_2->addWidget(lineEditSolo);
 
         horizontalLayout_2->setStretch(0, 1);
         horizontalLayout_2->setStretch(1, 1);
 
-        verticalLayout->addLayout(horizontalLayout_2);
+        mainlayout->addLayout(horizontalLayout_2);
 
         horizontalLayout_4 = new QHBoxLayout();
         horizontalLayout_4->setObjectName(QString::fromUtf8("horizontalLayout_4"));
@@ -163,21 +134,22 @@ public:
         disconnectProcessButton->setSizePolicy(sizePolicy);
         disconnectProcessButton->setFont(font);
         disconnectProcessButton->setFocusPolicy(Qt::StrongFocus);
+        disconnectProcessButton->setStyleSheet(QString::fromUtf8("background-color: rgb(23, 135, 6);"));
 
         horizontalLayout_4->addWidget(disconnectProcessButton);
 
-        snackLineEdit_4 = new QLineEdit(centralwidget);
-        snackLineEdit_4->setObjectName(QString::fromUtf8("snackLineEdit_4"));
-        sizePolicy1.setHeightForWidth(snackLineEdit_4->sizePolicy().hasHeightForWidth());
-        snackLineEdit_4->setSizePolicy(sizePolicy1);
-        snackLineEdit_4->setFont(font1);
+        lineEditDisconnectProcess = new QLineEdit(centralwidget);
+        lineEditDisconnectProcess->setObjectName(QString::fromUtf8("lineEditDisconnectProcess"));
+        sizePolicy1.setHeightForWidth(lineEditDisconnectProcess->sizePolicy().hasHeightForWidth());
+        lineEditDisconnectProcess->setSizePolicy(sizePolicy1);
+        lineEditDisconnectProcess->setFont(font1);
 
-        horizontalLayout_4->addWidget(snackLineEdit_4);
+        horizontalLayout_4->addWidget(lineEditDisconnectProcess);
 
         horizontalLayout_4->setStretch(0, 1);
         horizontalLayout_4->setStretch(1, 1);
 
-        verticalLayout->addLayout(horizontalLayout_4);
+        mainlayout->addLayout(horizontalLayout_4);
 
         horizontalLayout_5 = new QHBoxLayout();
         horizontalLayout_5->setObjectName(QString::fromUtf8("horizontalLayout_5"));
@@ -191,22 +163,161 @@ public:
 
         horizontalLayout_5->addWidget(fingerPrintButton);
 
-        snackLineEdit_5 = new QLineEdit(centralwidget);
-        snackLineEdit_5->setObjectName(QString::fromUtf8("snackLineEdit_5"));
-        sizePolicy1.setHeightForWidth(snackLineEdit_5->sizePolicy().hasHeightForWidth());
-        snackLineEdit_5->setSizePolicy(sizePolicy1);
-        snackLineEdit_5->setFont(font1);
+        lineEditFingerPrint = new QLineEdit(centralwidget);
+        lineEditFingerPrint->setObjectName(QString::fromUtf8("lineEditFingerPrint"));
+        sizePolicy1.setHeightForWidth(lineEditFingerPrint->sizePolicy().hasHeightForWidth());
+        lineEditFingerPrint->setSizePolicy(sizePolicy1);
+        lineEditFingerPrint->setFont(font1);
 
-        horizontalLayout_5->addWidget(snackLineEdit_5);
+        horizontalLayout_5->addWidget(lineEditFingerPrint);
 
         horizontalLayout_5->setStretch(0, 1);
         horizontalLayout_5->setStretch(1, 1);
 
-        verticalLayout->addLayout(horizontalLayout_5);
+        mainlayout->addLayout(horizontalLayout_5);
 
-        verticalSpacer = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+        horizontalLayout_6 = new QHBoxLayout();
+        horizontalLayout_6->setObjectName(QString::fromUtf8("horizontalLayout_6"));
+        horizontalLayout_6->setSizeConstraint(QLayout::SetDefaultConstraint);
+        luckyWheelButton = new QPushButton(centralwidget);
+        luckyWheelButton->setObjectName(QString::fromUtf8("luckyWheelButton"));
+        sizePolicy.setHeightForWidth(luckyWheelButton->sizePolicy().hasHeightForWidth());
+        luckyWheelButton->setSizePolicy(sizePolicy);
+        luckyWheelButton->setFont(font);
+        luckyWheelButton->setFocusPolicy(Qt::StrongFocus);
 
-        verticalLayout->addItem(verticalSpacer);
+        horizontalLayout_6->addWidget(luckyWheelButton);
+
+        lineEditLuckyWheel = new QLineEdit(centralwidget);
+        lineEditLuckyWheel->setObjectName(QString::fromUtf8("lineEditLuckyWheel"));
+        sizePolicy1.setHeightForWidth(lineEditLuckyWheel->sizePolicy().hasHeightForWidth());
+        lineEditLuckyWheel->setSizePolicy(sizePolicy1);
+        lineEditLuckyWheel->setFont(font1);
+
+        horizontalLayout_6->addWidget(lineEditLuckyWheel);
+
+        labelLuckWheel = new QLabel(centralwidget);
+        labelLuckWheel->setObjectName(QString::fromUtf8("labelLuckWheel"));
+        labelLuckWheel->setFont(font);
+
+        horizontalLayout_6->addWidget(labelLuckWheel);
+
+        lineEditLuckyWheelInteval = new QLineEdit(centralwidget);
+        lineEditLuckyWheelInteval->setObjectName(QString::fromUtf8("lineEditLuckyWheelInteval"));
+        sizePolicy1.setHeightForWidth(lineEditLuckyWheelInteval->sizePolicy().hasHeightForWidth());
+        lineEditLuckyWheelInteval->setSizePolicy(sizePolicy1);
+        lineEditLuckyWheelInteval->setFont(font);
+        lineEditLuckyWheelInteval->setAlignment(Qt::AlignCenter);
+
+        horizontalLayout_6->addWidget(lineEditLuckyWheelInteval);
+
+        horizontalLayout_6->setStretch(0, 1);
+
+        mainlayout->addLayout(horizontalLayout_6);
+
+        horizontalLayout_8 = new QHBoxLayout();
+        horizontalLayout_8->setObjectName(QString::fromUtf8("horizontalLayout_8"));
+        horizontalLayout_8->setSizeConstraint(QLayout::SetDefaultConstraint);
+        doomsDay2Button = new QPushButton(centralwidget);
+        doomsDay2Button->setObjectName(QString::fromUtf8("doomsDay2Button"));
+        sizePolicy.setHeightForWidth(doomsDay2Button->sizePolicy().hasHeightForWidth());
+        doomsDay2Button->setSizePolicy(sizePolicy);
+        doomsDay2Button->setFont(font);
+        doomsDay2Button->setFocusPolicy(Qt::StrongFocus);
+
+        horizontalLayout_8->addWidget(doomsDay2Button);
+
+        lineEditDoomsDayII = new QLineEdit(centralwidget);
+        lineEditDoomsDayII->setObjectName(QString::fromUtf8("lineEditDoomsDayII"));
+        sizePolicy1.setHeightForWidth(lineEditDoomsDayII->sizePolicy().hasHeightForWidth());
+        lineEditDoomsDayII->setSizePolicy(sizePolicy1);
+        lineEditDoomsDayII->setFont(font1);
+
+        horizontalLayout_8->addWidget(lineEditDoomsDayII);
+
+        horizontalLayout_8->setStretch(0, 1);
+        horizontalLayout_8->setStretch(1, 1);
+
+        mainlayout->addLayout(horizontalLayout_8);
+
+        horizontalLayout_7 = new QHBoxLayout();
+        horizontalLayout_7->setObjectName(QString::fromUtf8("horizontalLayout_7"));
+        horizontalLayout_7->setSizeConstraint(QLayout::SetDefaultConstraint);
+        doomsDay3Button = new QPushButton(centralwidget);
+        doomsDay3Button->setObjectName(QString::fromUtf8("doomsDay3Button"));
+        sizePolicy.setHeightForWidth(doomsDay3Button->sizePolicy().hasHeightForWidth());
+        doomsDay3Button->setSizePolicy(sizePolicy);
+        doomsDay3Button->setFont(font);
+        doomsDay3Button->setFocusPolicy(Qt::StrongFocus);
+
+        horizontalLayout_7->addWidget(doomsDay3Button);
+
+        lineEditDoomsDayIII = new QLineEdit(centralwidget);
+        lineEditDoomsDayIII->setObjectName(QString::fromUtf8("lineEditDoomsDayIII"));
+        sizePolicy1.setHeightForWidth(lineEditDoomsDayIII->sizePolicy().hasHeightForWidth());
+        lineEditDoomsDayIII->setSizePolicy(sizePolicy1);
+        lineEditDoomsDayIII->setFont(font1);
+
+        horizontalLayout_7->addWidget(lineEditDoomsDayIII);
+
+        horizontalLayout_7->setStretch(0, 1);
+        horizontalLayout_7->setStretch(1, 1);
+
+        mainlayout->addLayout(horizontalLayout_7);
+
+        horizontalLayout = new QHBoxLayout();
+        horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
+        horizontalLayout->setSizeConstraint(QLayout::SetDefaultConstraint);
+        snackButton = new QPushButton(centralwidget);
+        snackButton->setObjectName(QString::fromUtf8("snackButton"));
+        sizePolicy.setHeightForWidth(snackButton->sizePolicy().hasHeightForWidth());
+        snackButton->setSizePolicy(sizePolicy);
+        snackButton->setFont(font);
+        snackButton->setFocusPolicy(Qt::StrongFocus);
+
+        horizontalLayout->addWidget(snackButton);
+
+        lineEditSnack = new QLineEdit(centralwidget);
+        lineEditSnack->setObjectName(QString::fromUtf8("lineEditSnack"));
+        sizePolicy1.setHeightForWidth(lineEditSnack->sizePolicy().hasHeightForWidth());
+        lineEditSnack->setSizePolicy(sizePolicy1);
+        lineEditSnack->setFont(font1);
+
+        horizontalLayout->addWidget(lineEditSnack);
+
+        horizontalLayout->setStretch(0, 1);
+        horizontalLayout->setStretch(1, 1);
+
+        mainlayout->addLayout(horizontalLayout);
+
+        horizontalLayout_3 = new QHBoxLayout();
+        horizontalLayout_3->setObjectName(QString::fromUtf8("horizontalLayout_3"));
+        horizontalLayout_3->setSizeConstraint(QLayout::SetDefaultConstraint);
+        amorButton = new QPushButton(centralwidget);
+        amorButton->setObjectName(QString::fromUtf8("amorButton"));
+        sizePolicy.setHeightForWidth(amorButton->sizePolicy().hasHeightForWidth());
+        amorButton->setSizePolicy(sizePolicy);
+        amorButton->setFont(font);
+        amorButton->setFocusPolicy(Qt::StrongFocus);
+
+        horizontalLayout_3->addWidget(amorButton);
+
+        lineEditArmor = new QLineEdit(centralwidget);
+        lineEditArmor->setObjectName(QString::fromUtf8("lineEditArmor"));
+        sizePolicy1.setHeightForWidth(lineEditArmor->sizePolicy().hasHeightForWidth());
+        lineEditArmor->setSizePolicy(sizePolicy1);
+        lineEditArmor->setFont(font1);
+
+        horizontalLayout_3->addWidget(lineEditArmor);
+
+        horizontalLayout_3->setStretch(0, 1);
+        horizontalLayout_3->setStretch(1, 1);
+
+        mainlayout->addLayout(horizontalLayout_3);
+
+        verticalSpacer = new QSpacerItem(20, 36, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        mainlayout->addItem(verticalSpacer);
 
         labelPrompt = new QLabel(centralwidget);
         labelPrompt->setObjectName(QString::fromUtf8("labelPrompt"));
@@ -214,7 +325,7 @@ public:
         font2.setFamily(QString::fromUtf8("\345\276\256\350\275\257\351\233\205\351\273\221"));
         labelPrompt->setFont(font2);
 
-        verticalLayout->addWidget(labelPrompt);
+        mainlayout->addWidget(labelPrompt);
 
         labelInfo = new QLabel(centralwidget);
         labelInfo->setObjectName(QString::fromUtf8("labelInfo"));
@@ -225,23 +336,36 @@ public:
         font3.setWeight(75);
         labelInfo->setFont(font3);
 
-        verticalLayout->addWidget(labelInfo);
+        mainlayout->addWidget(labelInfo);
 
-        verticalLayout->setStretch(0, 1);
-        verticalLayout->setStretch(1, 1);
-        verticalLayout->setStretch(2, 1);
-        verticalLayout->setStretch(3, 1);
-        verticalLayout->setStretch(4, 1);
-        verticalLayout->setStretch(5, 1);
-        verticalLayout->setStretch(6, 1);
-        verticalLayout->setStretch(7, 1);
+        mainlayout->setStretch(0, 1);
+        mainlayout->setStretch(1, 1);
+        mainlayout->setStretch(2, 1);
+        mainlayout->setStretch(3, 1);
+        mainlayout->setStretch(4, 1);
+        mainlayout->setStretch(5, 1);
+        mainlayout->setStretch(6, 1);
+        mainlayout->setStretch(7, 1);
+        mainlayout->setStretch(9, 1);
+        mainlayout->setStretch(10, 1);
 
-        verticalLayout_2->addLayout(verticalLayout);
+        rootlayout->addLayout(mainlayout);
+
+        bottomlayout = new QHBoxLayout();
+        bottomlayout->setObjectName(QString::fromUtf8("bottomlayout"));
+
+        rootlayout->addLayout(bottomlayout);
+
+        rootlayout->setStretch(0, 1);
+        rootlayout->setStretch(1, 20);
+        rootlayout->setStretch(2, 1);
+
+        verticalLayout->addLayout(rootlayout);
 
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
-        menubar->setGeometry(QRect(0, 0, 282, 21));
+        menubar->setGeometry(QRect(0, 0, 441, 21));
         MainWindow->setMenuBar(menubar);
         statusbar = new QStatusBar(MainWindow);
         statusbar->setObjectName(QString::fromUtf8("statusbar"));
@@ -254,17 +378,25 @@ public:
 
     void retranslateUi(QMainWindow *MainWindow)
     {
-        MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "MainWindow", nullptr));
-        snackButton->setText(QCoreApplication::translate("MainWindow", "Sancks", nullptr));
-        snackLineEdit->setText(QCoreApplication::translate("MainWindow", "Ctrl+E", nullptr));
-        amorButton->setText(QCoreApplication::translate("MainWindow", "Amor", nullptr));
-        snackLineEdit_3->setText(QCoreApplication::translate("MainWindow", "Ctrl+E", nullptr));
+        MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "Play Tools", nullptr));
         soloButton->setText(QCoreApplication::translate("MainWindow", "Solo", nullptr));
-        snackLineEdit_2->setText(QCoreApplication::translate("MainWindow", "Ctrl+E", nullptr));
+        lineEditSolo->setText(QCoreApplication::translate("MainWindow", "Ctrl+Alt+S", nullptr));
         disconnectProcessButton->setText(QCoreApplication::translate("MainWindow", "Disconnect Process", nullptr));
-        snackLineEdit_4->setText(QCoreApplication::translate("MainWindow", "Ctrl+E", nullptr));
+        lineEditDisconnectProcess->setText(QCoreApplication::translate("MainWindow", "Ctrl+Alt+O", nullptr));
         fingerPrintButton->setText(QCoreApplication::translate("MainWindow", "FingerPrint", nullptr));
-        snackLineEdit_5->setText(QCoreApplication::translate("MainWindow", "Ctrl+E", nullptr));
+        lineEditFingerPrint->setText(QCoreApplication::translate("MainWindow", "Ctrl+P", nullptr));
+        luckyWheelButton->setText(QCoreApplication::translate("MainWindow", "Lucky Wheel", nullptr));
+        lineEditLuckyWheel->setText(QCoreApplication::translate("MainWindow", "Ctrl+E", nullptr));
+        labelLuckWheel->setText(QCoreApplication::translate("MainWindow", "Inteval(ms)", nullptr));
+        lineEditLuckyWheelInteval->setText(QCoreApplication::translate("MainWindow", "4125", nullptr));
+        doomsDay2Button->setText(QCoreApplication::translate("MainWindow", "DoomsDay II", nullptr));
+        lineEditDoomsDayII->setText(QCoreApplication::translate("MainWindow", "Ctrl+F2", nullptr));
+        doomsDay3Button->setText(QCoreApplication::translate("MainWindow", "DoomsDay III", nullptr));
+        lineEditDoomsDayIII->setText(QCoreApplication::translate("MainWindow", "Ctrl+F3", nullptr));
+        snackButton->setText(QCoreApplication::translate("MainWindow", "Sancks", nullptr));
+        lineEditSnack->setText(QCoreApplication::translate("MainWindow", "Ctrl+Alt+E", nullptr));
+        amorButton->setText(QCoreApplication::translate("MainWindow", "Armor", nullptr));
+        lineEditArmor->setText(QCoreApplication::translate("MainWindow", "Ctrl+Alt+C", nullptr));
         labelPrompt->setText(QCoreApplication::translate("MainWindow", "Prompt", nullptr));
         labelInfo->setText(QCoreApplication::translate("MainWindow", "Ver 0.1", nullptr));
     } // retranslateUi
