@@ -205,10 +205,13 @@ void AutoMate::SendKeyInput(WORD* keylist, char num)
 	{
 		input[i].type = input[i + num].type = INPUT_KEYBOARD;
 		// set key code for down and up
-		input[i].ki.wVk = input[i+num].ki.wVk = keylist[i];
+		//input[i].ki.wVk = input[i+num].ki.wVk = keylist[i];
+		// for DirectInput App, use scan code instead of Virtual code
+		input[i].ki.wScan = input[i + num].ki.wScan = MapVirtualKey(keylist[i], MAPVK_VK_TO_VSC);
 		// Specifies various aspects of a keystroke.This member can be certain combinations of the following values.
+		input[i].ki.dwFlags = KEYEVENTF_SCANCODE;
 		// make sure the key up
-		input[i+num].ki.dwFlags = KEYEVENTF_KEYUP;
+		input[i+num].ki.dwFlags = KEYEVENTF_KEYUP | KEYEVENTF_SCANCODE;
 		// The time stamp for the event, in milliseconds. If this parameter is zero, the system will provide its own time stamp.
 		input[i].ki.time = input[i + num].ki.time = 0;
 	}

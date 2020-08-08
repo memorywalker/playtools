@@ -45,6 +45,7 @@ private slots:
 
 private:
     void InitUI();
+    void PlaySoundPrompt();
 
     enum FunctionType
     {

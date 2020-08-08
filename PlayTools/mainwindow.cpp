@@ -90,10 +90,15 @@ void MainWindow::InitUI()
 	Q_ASSERT(conn);
 }
 
+void MainWindow::PlaySoundPrompt()
+{
+	QSound::play("c:/Windows/media/tada.wav");
+}
+
 void MainWindow::OnActionDone(QString& strOut)
 {
     ui->labelPrompt->setText(strOut);
-    QSound::play("c:/Windows/media/tada.wav");
+	PlaySoundPrompt();
 }
 
 void MainWindow::closeEvent(QCloseEvent* e)
@@ -104,6 +109,7 @@ void MainWindow::closeEvent(QCloseEvent* e)
 
 void MainWindow::on_snackButton_clicked()
 {
+	PlaySoundPrompt();
     if (m_AutoMate)
     {
         m_AutoMate->SendSnackCmd();
@@ -112,17 +118,19 @@ void MainWindow::on_snackButton_clicked()
 
 void MainWindow::on_amorButton_clicked()
 {
-    if (m_AutoMate)
-    {
+	PlaySoundPrompt();
+    if (m_AutoMate)    
+	{		
         m_AutoMate->SendArmorCmd();
     }
 }
 
 void MainWindow::on_soloButton_clicked()
 {
+	PlaySoundPrompt();
 	static bool switchOn = false;
 	if (!switchOn)
-	{
+	{		
 		m_firewallRules.StartSinglePublicSession();
 	}
 	else
@@ -143,6 +151,7 @@ void MainWindow::on_soloButton_clicked()
 
 void MainWindow::on_disconnectProcessButton_clicked()
 {   
+	PlaySoundPrompt();
     static bool switchOn = false;
     if (!switchOn)
     {
@@ -166,11 +175,12 @@ void MainWindow::on_disconnectProcessButton_clicked()
 
 void MainWindow::on_fingerPrintButton_clicked()
 {
-    
+	PlaySoundPrompt();
 }
 
 void MainWindow::on_luckyWheelButton_clicked()
 {
+	PlaySoundPrompt();
 	if (m_AutoMate)
 	{
 	 	m_AutoMate->SendLuckyWheelCmd(m_nLuckwheelInteval);
@@ -179,6 +189,7 @@ void MainWindow::on_luckyWheelButton_clicked()
 
 void MainWindow::on_doomsDay2Button_clicked()
 {
+	PlaySoundPrompt();
 	if (m_AutoMate)
 	{
 		m_AutoMate->SendDoomsDayIICmd();
@@ -187,6 +198,7 @@ void MainWindow::on_doomsDay2Button_clicked()
 
 void MainWindow::on_doomsDay3Button_clicked()
 {
+	PlaySoundPrompt();
 	if (m_AutoMate)
 	{
 		m_AutoMate->SendDoomsDayIIICmd();
