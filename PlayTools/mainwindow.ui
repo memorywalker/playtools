@@ -16,12 +16,12 @@
   <widget class="QWidget" name="centralwidget">
    <layout class="QVBoxLayout" name="verticalLayout">
     <item>
-     <layout class="QVBoxLayout" name="rootlayout" stretch="1,20,1">
+     <layout class="QVBoxLayout" name="rootlayout" stretch="1,16,1">
       <item>
        <layout class="QHBoxLayout" name="toplayout"/>
       </item>
       <item>
-       <layout class="QVBoxLayout" name="mainlayout" stretch="1,1,1,1,1,1,1,1,0,1,1">
+       <layout class="QVBoxLayout" name="mainlayout" stretch="1,1,1,1,1,1,1,1,1,1,1,1">
         <item>
          <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="1,1">
           <property name="sizeConstraint">
@@ -478,6 +478,44 @@
             </property>
             <property name="text">
              <string>Ctrl+Alt+C</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_11" stretch="1,1">
+          <item>
+           <widget class="QPushButton" name="pushButtonSave">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="font">
+             <font>
+              <family>Arial</family>
+              <pointsize>10</pointsize>
+              <weight>75</weight>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="text">
+             <string>Save</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton_2">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>PushButton</string>
             </property>
            </widget>
           </item>

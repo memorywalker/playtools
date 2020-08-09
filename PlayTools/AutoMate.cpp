@@ -23,6 +23,8 @@ void AutoMate::SetWindow(QObject* qObj)
 	m_MainWindow = qObj;
 }
 
+
+
 void AutoMate::SendSnackCmd()
 {
 	//keybd_event(VK_TAB, 0, 0, 0);
@@ -46,39 +48,13 @@ void AutoMate::SendSnackCmd()
 
 	Sleep(KEY_PRESS_INTERVAL);
 
-	int sleepTime = 20;
-	WORD key = 'M';
-	SendKeyInput(&key, 1);
-	Sleep(sleepTime);
-	key = VK_DOWN;
-	SendKeyInput(&key, 1);
-	Sleep(sleepTime);
-	key = VK_DOWN;
-	SendKeyInput(&key, 1);
-	Sleep(sleepTime);
-	key = VK_RETURN;
-	SendKeyInput(&key, 1);
-	Sleep(sleepTime);
-	key = VK_DOWN;
-	SendKeyInput(&key, 1);
-	Sleep(sleepTime);
-	key = VK_DOWN;
-	SendKeyInput(&key, 1);
-	Sleep(sleepTime);
-	key = VK_RETURN;
-	SendKeyInput(&key, 1);	
-	Sleep(sleepTime);
-	key = VK_RETURN;
-	SendKeyInput(&key, 1);
-	Sleep(sleepTime);
-	key = VK_ESCAPE;
-	SendKeyInput(&key, 1);
-	Sleep(sleepTime);
-	key = VK_ESCAPE;
-	SendKeyInput(&key, 1);
-	Sleep(sleepTime);
-	key = VK_ESCAPE;
-	SendKeyInput(&key, 1);
+	WORD keySeq[] = { 'M', VK_DOWN, VK_DOWN, VK_RETURN, VK_DOWN, VK_DOWN, VK_RETURN, VK_RETURN, VK_ESCAPE, VK_ESCAPE, VK_ESCAPE };
+
+	for (size_t i = 0; i < ARRAYSIZE(keySeq); i++)
+	{
+		KeyClick(keySeq[i]);
+		Sleep(50);
+	}	
 }
 
 void AutoMate::SendArmorCmd()
@@ -100,122 +76,120 @@ void AutoMate::SendArmorCmd()
 
 	Sleep(KEY_PRESS_INTERVAL);
 
-	int sleepTime = 20;
-	WORD key = 'M';
-	SendKeyInput(&key, 1);
-	Sleep(sleepTime);
-	key = VK_DOWN;
-	SendKeyInput(&key, 1);
-	Sleep(sleepTime);
-	key = VK_DOWN;
-	SendKeyInput(&key, 1);
-	Sleep(sleepTime);
-	key = VK_RETURN;
-	SendKeyInput(&key, 1);
-	Sleep(sleepTime);
-	key = VK_DOWN;
-	SendKeyInput(&key, 1);
-	Sleep(sleepTime);
-	key = VK_RETURN;
-	SendKeyInput(&key, 1);
-	Sleep(sleepTime);
-	key = VK_DOWN;
-	SendKeyInput(&key, 1);
-	Sleep(sleepTime);
-	key = VK_DOWN;
-	SendKeyInput(&key, 1);
-	Sleep(sleepTime);
-	key = VK_DOWN;
-	SendKeyInput(&key, 1);
-	Sleep(sleepTime);
-	key = VK_DOWN;
-	SendKeyInput(&key, 1);
-	Sleep(sleepTime);
-	key = VK_RETURN;
-	SendKeyInput(&key, 1);
-	Sleep(sleepTime);
-	key = VK_ESCAPE;
-	SendKeyInput(&key, 1);
-	Sleep(sleepTime);
-	key = VK_ESCAPE;
-	SendKeyInput(&key, 1);
-	Sleep(sleepTime);
-	key = VK_ESCAPE;
-	SendKeyInput(&key, 1);
+	WORD keySeq[] = { 'M', VK_DOWN, VK_DOWN, VK_RETURN, VK_DOWN, VK_RETURN, 
+		VK_DOWN,  VK_DOWN, VK_DOWN, VK_DOWN, VK_RETURN, VK_ESCAPE, VK_ESCAPE, VK_ESCAPE };
+
+	for (size_t i = 0; i < ARRAYSIZE(keySeq); i++)
+	{
+		KeyClick(keySeq[i]);
+		Sleep(50);
+	}
 }
 
 void AutoMate::SendDoomsDayIICmd()
 {
 	Sleep(KEY_PRESS_INTERVAL);
 
-	keybd_event(VK_SPACE, 0, 0, 0);
+	KeyDown(VK_SPACE);
 	Sleep(500);
-	keybd_event('D', 0, 0, 0);
+	KeyDown('D');
 	Sleep(30);
-	keybd_event(VK_SPACE, 0, KEYEVENTF_KEYUP, 0);
+	KeyUp(VK_SPACE);
 	Sleep(10);
-	keybd_event('D', 0, KEYEVENTF_KEYUP, 0);
+	KeyUp('D');
 }
 
 void AutoMate::SendDoomsDayIIICmd()
 {
 	Sleep(KEY_PRESS_INTERVAL);
 
-	keybd_event(VK_SPACE, 0, 0, 0);
+	KeyDown(VK_SPACE);
 	Sleep(60);
-	keybd_event('D', 0, 0, 0);
+	KeyDown('D');
 	Sleep(20);
-	keybd_event('S', 0, 0, 0);
+	KeyDown('S');
 	Sleep(20);
-	keybd_event(VK_SPACE, 0, KEYEVENTF_KEYUP, 0);
+	KeyUp(VK_SPACE);
 	Sleep(40);
-	keybd_event('D', 0, KEYEVENTF_KEYUP, 0);
+	KeyUp('D');
 	Sleep(20);
-	keybd_event('S', 0, KEYEVENTF_KEYUP, 0);
+	KeyUp('S');
 }
 
 void AutoMate::SendLuckyWheelCmd(int millisec)
 {
 	Sleep(KEY_PRESS_INTERVAL);
 
-	WORD key = 'E';
-	SendKeyInput(&key, 1);
-
+	KeyClick('E');
 	Sleep(millisec);
-
-	key = 'S';
-	SendKeyInput(&key, 1);
+	KeyClick('S');
 }
 
 void AutoMate::SendFingerPrintCmd()
 {
 }
 
-void AutoMate::SendKeyInput(WORD* keylist, char num)
+void AutoMate::KeyPress(WORD keyCode, bool bUp /*= false*/)
 {
-	if (num > MAX_KEY_COUNT)
-	{
-		num = MAX_KEY_COUNT;
-	}
-	// *2 for down and up
-	INPUT input[MAX_KEY_COUNT*2];
-	memset(input, 0, sizeof(input));
+	INPUT input;
+	memset(&input, 0, sizeof(input));
 
-	for (char i = 0; i < num; i++)
+	input.type = INPUT_KEYBOARD;
+	input.ki.dwExtraInfo = GetMessageExtraInfo();
+	// for DirectInput App, use scan code instead of Virtual code
+	input.ki.wScan = static_cast<WORD>(MapVirtualKeyEx(keyCode, MAPVK_VK_TO_VSC, GetKeyboardLayout(0)));
+	// Specifies various aspects of a keystroke.This member can be certain combinations of the following values.
+	DWORD dwFlags = KEYEVENTF_SCANCODE;
+	if (bUp)
 	{
-		input[i].type = input[i + num].type = INPUT_KEYBOARD;
-		// set key code for down and up
-		//input[i].ki.wVk = input[i+num].ki.wVk = keylist[i];
-		// for DirectInput App, use scan code instead of Virtual code
-		input[i].ki.wScan = input[i + num].ki.wScan = MapVirtualKey(keylist[i], MAPVK_VK_TO_VSC);
-		// Specifies various aspects of a keystroke.This member can be certain combinations of the following values.
-		input[i].ki.dwFlags = KEYEVENTF_SCANCODE;
-		// make sure the key up
-		input[i+num].ki.dwFlags = KEYEVENTF_KEYUP | KEYEVENTF_SCANCODE;
-		// The time stamp for the event, in milliseconds. If this parameter is zero, the system will provide its own time stamp.
-		input[i].ki.time = input[i + num].ki.time = 0;
+		dwFlags |= KEYEVENTF_KEYUP;
 	}
+	if (VK_LEFT<=keyCode&&keyCode<=VK_DOWN)
+	{
+		dwFlags |= KEYEVENTF_EXTENDEDKEY;
+	}
+	input.ki.dwFlags = dwFlags;
+	// The time stamp for the event, in milliseconds. If this parameter is zero, the system will provide its own time stamp.
+	input.ki.time = 0;
 
-	SendInput(num*2, input, sizeof(INPUT));
+	SendInput(1, &input, sizeof(INPUT));
 }
 
+void AutoMate::KeyDown(WORD keyCode)
+{
+	KeyPress(keyCode);
+}
+
+void AutoMate::KeyUp(WORD keyCode)
+{
+	KeyPress(keyCode, true);
+}
+
+void AutoMate::KeyClick(WORD keyCode)
+{
+	KeyPress(keyCode);
+	Sleep(100);
+	KeyPress(keyCode, true);
+}
+
+void AutoMate::SendTestCommand()
+{
+	Sleep(KEY_PRESS_INTERVAL);
+
+	int sleepTime = 100;
+
+	WORD key = 'W';
+	for (int i = 0; i < 5; i++)
+	{
+		KeyPress(key);
+		Sleep(sleepTime);
+		KeyPress(key, true);
+		Sleep(sleepTime);
+	}
+	
+	key = 'A';
+	KeyPress(key);
+	Sleep(sleepTime);
+	KeyPress(key, true);
+	
+}

@@ -58,6 +58,9 @@ public:
     QHBoxLayout *horizontalLayout_3;
     QPushButton *amorButton;
     QLineEdit *lineEditArmor;
+    QHBoxLayout *horizontalLayout_11;
+    QPushButton *pushButtonSave;
+    QPushButton *pushButton_2;
     QSpacerItem *verticalSpacer;
     QLabel *labelPrompt;
     QLabel *labelInfo;
@@ -315,6 +318,31 @@ public:
 
         mainlayout->addLayout(horizontalLayout_3);
 
+        horizontalLayout_11 = new QHBoxLayout();
+        horizontalLayout_11->setObjectName(QString::fromUtf8("horizontalLayout_11"));
+        pushButtonSave = new QPushButton(centralwidget);
+        pushButtonSave->setObjectName(QString::fromUtf8("pushButtonSave"));
+        QSizePolicy sizePolicy2(QSizePolicy::Minimum, QSizePolicy::Preferred);
+        sizePolicy2.setHorizontalStretch(0);
+        sizePolicy2.setVerticalStretch(0);
+        sizePolicy2.setHeightForWidth(pushButtonSave->sizePolicy().hasHeightForWidth());
+        pushButtonSave->setSizePolicy(sizePolicy2);
+        pushButtonSave->setFont(font);
+
+        horizontalLayout_11->addWidget(pushButtonSave);
+
+        pushButton_2 = new QPushButton(centralwidget);
+        pushButton_2->setObjectName(QString::fromUtf8("pushButton_2"));
+        sizePolicy2.setHeightForWidth(pushButton_2->sizePolicy().hasHeightForWidth());
+        pushButton_2->setSizePolicy(sizePolicy2);
+
+        horizontalLayout_11->addWidget(pushButton_2);
+
+        horizontalLayout_11->setStretch(0, 1);
+        horizontalLayout_11->setStretch(1, 1);
+
+        mainlayout->addLayout(horizontalLayout_11);
+
         verticalSpacer = new QSpacerItem(20, 36, QSizePolicy::Minimum, QSizePolicy::Expanding);
 
         mainlayout->addItem(verticalSpacer);
@@ -346,8 +374,10 @@ public:
         mainlayout->setStretch(5, 1);
         mainlayout->setStretch(6, 1);
         mainlayout->setStretch(7, 1);
+        mainlayout->setStretch(8, 1);
         mainlayout->setStretch(9, 1);
         mainlayout->setStretch(10, 1);
+        mainlayout->setStretch(11, 1);
 
         rootlayout->addLayout(mainlayout);
 
@@ -357,7 +387,7 @@ public:
         rootlayout->addLayout(bottomlayout);
 
         rootlayout->setStretch(0, 1);
-        rootlayout->setStretch(1, 20);
+        rootlayout->setStretch(1, 16);
         rootlayout->setStretch(2, 1);
 
         verticalLayout->addLayout(rootlayout);
@@ -397,6 +427,8 @@ public:
         lineEditSnack->setText(QCoreApplication::translate("MainWindow", "Ctrl+Alt+E", nullptr));
         amorButton->setText(QCoreApplication::translate("MainWindow", "Armor", nullptr));
         lineEditArmor->setText(QCoreApplication::translate("MainWindow", "Ctrl+Alt+C", nullptr));
+        pushButtonSave->setText(QCoreApplication::translate("MainWindow", "Save", nullptr));
+        pushButton_2->setText(QCoreApplication::translate("MainWindow", "PushButton", nullptr));
         labelPrompt->setText(QCoreApplication::translate("MainWindow", "Prompt", nullptr));
         labelInfo->setText(QCoreApplication::translate("MainWindow", "Ver 0.1", nullptr));
     } // retranslateUi

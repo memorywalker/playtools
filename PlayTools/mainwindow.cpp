@@ -32,6 +32,8 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+
+
 void MainWindow::InitUI()
 {
 	//QHotkey hotkey(QKeySequence("ctrl+alt+O"), true);//The hotkey will be automatically registered
@@ -41,15 +43,24 @@ void MainWindow::InitUI()
 	QString strluckyWheelInteval = ui->lineEditLuckyWheelInteval->text();
 	m_nLuckwheelInteval = strluckyWheelInteval.toInt();
 	
+	BindHotKeys();
+}
+
+void MainWindow::PlaySoundPrompt()
+{
+	QSound::play("c:/Windows/media/tada.wav");
+}
+
+void MainWindow::BindHotKeys()
+{
 	for (size_t i = 0; i < FunctionType_Max; i++)
 	{
 		m_FuncHotkeys[i] = new QHotkey(this);
 	}
 
-	
-    // solo
-    QString strKey = ui->lineEditSolo->text().trimmed().toLower();
-	m_FuncHotkeys[FunctionType_Solo]->setShortcut(QKeySequence(strKey), true);	
+	// solo
+	QString strKey = ui->lineEditSolo->text().trimmed().toLower();
+	m_FuncHotkeys[FunctionType_Solo]->setShortcut(QKeySequence(strKey), true);
 	QMetaObject::Connection conn = QObject::connect(m_FuncHotkeys[FunctionType_Solo], &QHotkey::activated, this, &MainWindow::on_soloButton_clicked);
 	Q_ASSERT(conn);
 
@@ -90,9 +101,29 @@ void MainWindow::InitUI()
 	Q_ASSERT(conn);
 }
 
-void MainWindow::PlaySoundPrompt()
+void MainWindow::UnBindHotKeys()
 {
-	QSound::play("c:/Windows/media/tada.wav");
+	bool bRet = QObject::disconnect(m_FuncHotkeys[FunctionType_Solo], &QHotkey::activated, this, &MainWindow::on_soloButton_clicked);
+
+	bRet &= QObject::disconnect(m_FuncHotkeys[FunctionType_Disconnect], &QHotkey::activated, this, &MainWindow::on_disconnectProcessButton_clicked);
+
+	bRet &= QObject::disconnect(m_FuncHotkeys[FunctionType_Finger], &QHotkey::activated, this, &MainWindow::on_fingerPrintButton_clicked);
+
+	bRet &= QObject::disconnect(m_FuncHotkeys[FunctionType_Lucky], &QHotkey::activated, this, &MainWindow::on_luckyWheelButton_clicked);
+
+	bRet &= QObject::disconnect(m_FuncHotkeys[FunctionType_DoomsDayII], &QHotkey::activated, this, &MainWindow::on_doomsDay2Button_clicked);
+
+	bRet &= QObject::disconnect(m_FuncHotkeys[FunctionType_DoomsDayIII], &QHotkey::activated, this, &MainWindow::on_doomsDay3Button_clicked);
+
+	bRet &= QObject::disconnect(m_FuncHotkeys[FunctionType_Snack], &QHotkey::activated, this, &MainWindow::on_snackButton_clicked);
+
+	bRet &= QObject::disconnect(m_FuncHotkeys[FunctionType_Armor], &QHotkey::activated, this, &MainWindow::on_amorButton_clicked);
+
+	for (size_t i = 0; i < FunctionType_Max; i++)
+	{
+		delete m_FuncHotkeys[i];
+		m_FuncHotkeys[i] = nullptr;
+	}
 }
 
 void MainWindow::OnActionDone(QString& strOut)
@@ -209,4 +240,10 @@ void MainWindow::on_lineEditLuckyWheelInteval_textChanged(const QString &arg1)
 {
 	QString strluckyWheelInteval = ui->lineEditLuckyWheelInteval->text();
 	m_nLuckwheelInteval = strluckyWheelInteval.toInt();
+}
+
+void MainWindow::on_pushButtonSave_clicked()
+{
+	UnBindHotKeys();
+	BindHotKeys();
 }

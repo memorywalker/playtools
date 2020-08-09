@@ -43,9 +43,13 @@ private slots:
 
     void on_lineEditLuckyWheelInteval_textChanged(const QString &arg1);
 
+    void on_pushButtonSave_clicked();
+
 private:
     void InitUI();
     void PlaySoundPrompt();
+    void BindHotKeys();
+    void UnBindHotKeys();
 
     enum FunctionType
     {
